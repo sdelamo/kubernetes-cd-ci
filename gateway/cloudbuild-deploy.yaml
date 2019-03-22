@@ -4,8 +4,9 @@ steps:
     entrypoint: 'bash'
     args: ['-c', './gradlew build']
   - name: 'java:8'
-    env: ['GRADLE_USER_HOME=cache']
     entrypoint: 'bash'
     args: ['-c', './gradlew :gateway:jibDockerBuild']
+    env:
+      - 'GRADLE_USER_HOME=cache'
   - name: 'gcr.io/cloud-builders/docker'
     args: ['tag', '${_IMAGE_NAME}:$TAG_NAME', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:$TAG_NAME']

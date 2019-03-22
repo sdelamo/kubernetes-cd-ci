@@ -74,3 +74,7 @@ task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
     dependsOn 'copyCloudBuildDeploy'
 }
 
+if (System.getenv('PROJECT_ID') != null) {
+    println "project id ${System.getenv('PROJECT_ID')}"
+jib.to.image = "gcr.io/${System.getenv('PROJECT_ID')}/gateway"
+}
