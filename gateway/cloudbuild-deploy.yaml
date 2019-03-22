@@ -5,8 +5,7 @@ steps:
     args: ['-c', './gradlew build']
   - name: 'gcr.io/cloud-builders/gradle'
     args: [':gateway:jibDockerBuild']
-    env:
-      - 'GRADLE_USER_HOME=cache'
-      - 'GOOGLE_PROJECT_ID=$PROJECT_ID'
   - name: 'gcr.io/cloud-builders/docker'
     args: ['tag', 'gateway:$TAG_NAME', 'gcr.io/$PROJECT_ID/gateway:$TAG_NAME']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/gateway:$TAG_NAME']
