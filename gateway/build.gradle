@@ -73,8 +73,8 @@ task copyCloudBuildDeploy(type: Copy) {
 task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
     dependsOn 'copyCloudBuildDeploy'
 }
-
-if (System.getenv('GOOGLE_PROJECT_ID') != null) {
-    println "project id ${System.getenv('GOOGLE_PROJECT_ID')}"
-jib.to.image = "gcr.io/${System.getenv('GOOGLE_PROJECT_ID')}/gateway"
-}
+//
+//if (System.getenv('GOOGLE_PROJECT_ID') != null) {
+//    println "project id ${System.getenv('GOOGLE_PROJECT_ID')}"
+//jib.to.image = "gcr.io/${System.getenv('GOOGLE_PROJECT_ID')}/gateway"
+//}
