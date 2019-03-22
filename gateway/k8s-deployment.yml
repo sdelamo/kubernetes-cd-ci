@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: gcr.io/k8s-mn-ci-cd:gateway:gateway-0.20
+          image: gcr.io/k8s-mn-ci-cd/gateway:gateway-0.21
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
