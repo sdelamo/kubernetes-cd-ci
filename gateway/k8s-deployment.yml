@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: gcr.io/mn-configmap-test/k8s-mn-ci-cd:gateway-0.14
+          image: gcr.io/mn-configmap-test/k8s-mn-ci-cd:gateway-0.15
           ports:
             - containerPort: 8080
 ---
