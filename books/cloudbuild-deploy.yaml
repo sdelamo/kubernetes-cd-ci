@@ -4,6 +4,6 @@ steps:
     entrypoint: 'bash'
     args: ['-c', './gradlew build']
   - name: 'gcr.io/cloud-builders/gradle'
-    args: [':books:jibDockerBuild']
+    args: ['books:jibDockerBuild']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['tag', '${_IMAGE_NAME}:$TAG_NAME', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}:$TAG_NAME']
