@@ -3,9 +3,8 @@ steps:
     env: ['GRADLE_USER_HOME=cache']
     entrypoint: 'bash'
     args: ['-c', './gradlew build']
-  - name: 'java:8'
-    entrypoint: 'bash'
-    args: ['-c', './gradlew :books:jibDockerBuild']
+  - name: 'gcr.io/cloud-builders/gradle'
+    args: [':books:jibDockerBuild']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['tag', 'books:$TAG_NAME', 'gcr.io/$PROJECT_ID/books:$TAG_NAME']
   - name: 'gcr.io/cloud-builders/docker'

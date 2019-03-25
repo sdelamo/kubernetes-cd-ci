@@ -19,9 +19,10 @@ repositories {
     maven { url "https://jcenter.bintray.com" }
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots/"
-        content {
-            includeVersionByRegex('io\\.micronaut.*', '.*', '.*BUILD-SNAPSHOT')
-        }
+// Because  name: 'gcr.io/cloud-builders/gradle is Gradle 4
+//        content {
+//            includeVersionByRegex('io\\.micronaut.*', '.*', '.*BUILD-SNAPSHOT')
+//        }
     }
 }
 
