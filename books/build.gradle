@@ -15,9 +15,14 @@ version projectVersion
 group "books"
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven { url "https://jcenter.bintray.com" }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+        content {
+            includeVersionByRegex('io\\.micronaut.*', '.*', '.*BUILD-SNAPSHOT')
+        }
+    }
 }
 
 dependencyManagement {
@@ -43,9 +48,12 @@ dependencies {
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "io.micronaut:micronaut-inject-groovy"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+    compile "io.micronaut:micronaut-management"
     testCompile("org.spockframework:spock-core:$spockVersion") {
         exclude group: "org.codehaus.groovy", module: "groovy-all"
     }
+    runtime "io.micronaut.configuration:micronaut-kubernetes-discovery-client:$micronautKubernetesDiscoveryClientVersion"
+
 }
 
 shadowJar {
@@ -72,3 +80,6 @@ task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
     dependsOn 'copyCloudBuildDeploy'
 }
 
+run {
+    systemProperty "micronaut.environments", System.getProperty('micronaut.environments')
+}

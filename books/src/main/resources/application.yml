@@ -1,5 +1,7 @@
 micronaut:
-    server:
-        port: 8081
     application:
         name: books
+endpoints:
+    management:
+        health:
+            enabled: true
