@@ -34,7 +34,7 @@ class HealthSpec extends Specification {
 
         then:
         resp.status() == HttpStatus.OK
-        resp.body() == '{"status":"UP"}'
+        resp.body().contains '"status":"UP"'
 
     }
 }
