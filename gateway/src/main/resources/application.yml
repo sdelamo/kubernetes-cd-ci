@@ -5,3 +5,4 @@ endpoints:
     management:
         health:
             enabled: true
+            details-visible: ANONYMOUS
