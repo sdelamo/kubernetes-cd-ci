@@ -1,3 +1,7 @@
 micronaut:
     application:
         name: gateway
+endpoints:
+    management:
+        health:
+            enabled: true
