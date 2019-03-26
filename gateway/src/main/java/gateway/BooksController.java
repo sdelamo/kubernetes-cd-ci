@@ -10,13 +10,13 @@ import java.util.List;
 @Controller("/books")
 public class BooksController {
 
-    private final BooksClient booksClient;
+    private final BooksFetcher booksFetcher;
 
-    public BooksController(BooksClient booksClient) {
-        this.booksClient = booksClient;
+    public BooksController(BooksFetcher booksFetcher) {
+        this.booksFetcher = booksFetcher;
     }
     @Get
     Single<List<Book>> index() {
-        return booksClient.index();
+        return booksFetcher.index();
     }
 }
