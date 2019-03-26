@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: books
-          image: gcr.io/k8s-mn-ci-cd/books:books-0.12
+          image: gcr.io/k8s-mn-ci-cd/books:books-0.13
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
