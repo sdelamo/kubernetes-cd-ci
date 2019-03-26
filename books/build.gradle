@@ -84,3 +84,10 @@ task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
 run {
     systemProperty "micronaut.environments", System.getProperty('micronaut.environments')
 }
+
+jib {
+    from {
+//        image = 'gcr.io/distroless/java:debug'
+        image = 'alvarosanchez/alpine-with-curl'
+    }
+}

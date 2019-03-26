@@ -83,3 +83,10 @@ task copyCloudBuildDeploy(type: Copy) {
 task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
     dependsOn 'copyCloudBuildDeploy'
 }
+
+jib {
+    from {
+//        image = 'gcr.io/distroless/java:debug'
+        image = 'alvarosanchez/alpine-with-curl'
+    }
+}
