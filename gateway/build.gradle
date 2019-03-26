@@ -53,7 +53,7 @@ dependencies {
     }
     compile "io.micronaut:micronaut-management"
 
-    runtime "io.micronaut.configuration:micronaut-kubernetes-discovery-client:$micronautKubernetesDiscoveryClientVersion"
+    runtime "io.micronaut.kubernetes:micronaut-kubernetes-discovery-client:$micronautKubernetesDiscoveryClientVersion"
 }
 
 shadowJar {
