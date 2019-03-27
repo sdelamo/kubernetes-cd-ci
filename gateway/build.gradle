@@ -86,7 +86,7 @@ task replaceTagNameWithProjectVersion(type: ReplaceTagNameTask) {
 
 jib {
     from {
-//        image = 'gcr.io/distroless/java:debug'
-        image = 'alvarosanchez/alpine-with-curl'
+        image = 'gcr.io/distroless/java:debug'
+//        image = 'alvarosanchez/alpine-with-curl'
     }
 }
