@@ -28,6 +28,9 @@ class BooksControllerSpec extends Specification {
     }
 
     void "accesing the book controller returns a list of books"() {
+        expect:
+        embeddedServer.applicationContext.containsBean(BookClientFallback)
+
         when:
         HttpRequest request = HttpRequest.GET('/books')
 

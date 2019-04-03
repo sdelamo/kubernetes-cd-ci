@@ -7,6 +7,6 @@ import io.reactivex.Single
 class BookClientFallback implements BooksFetcher {
     @Override
     Single<List<Book>> index() {
-        Single.just(Collections.singletonList(new Book("Building Microservices")))
+        Single.just(Collections.singletonList(new Book("Building Microservices", 100)))
     }
 }
