@@ -49,10 +49,10 @@ dependencies {
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "io.micronaut:micronaut-inject-groovy"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-    compile "io.micronaut:micronaut-management"
     testCompile("org.spockframework:spock-core:$spockVersion") {
         exclude group: "org.codehaus.groovy", module: "groovy-all"
     }
+    compile "io.micronaut:micronaut-management"
     runtime "io.micronaut.kubernetes:micronaut-kubernetes-discovery-client:$micronautKubernetesDiscoveryClientVersion"
 
 }

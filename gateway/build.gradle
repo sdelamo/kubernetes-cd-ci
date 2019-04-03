@@ -52,7 +52,6 @@ dependencies {
         exclude group: "org.codehaus.groovy", module: "groovy-all"
     }
     compile "io.micronaut:micronaut-management"
-
     runtime "io.micronaut.kubernetes:micronaut-kubernetes-discovery-client:$micronautKubernetesDiscoveryClientVersion"
 }
 
