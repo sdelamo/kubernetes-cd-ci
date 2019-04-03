@@ -1,7 +1,7 @@
 micronaut:
-    application:
-        name: gateway
+  application:
+    name: gateway
 endpoints:
-    health:
-        enabled: true
-        details-visible: ANONYMOUS
+  health:
+    enabled: true
+    details-visible: ANONYMOUS
