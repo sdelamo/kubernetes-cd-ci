@@ -7,11 +7,14 @@ public class Book {
 
     private String title;
 
+    private Integer pages;
+
     public Book() {
     }
 
-    public Book(String title) {
+    public Book(String title, Integer pages) {
         this.title = title;
+        this.pages = pages;
     }
 
     public String getTitle() {
@@ -22,18 +25,11 @@ public class Book {
         this.title = title;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book book = (Book) o;
-
-        return title != null ? title.equals(book.title) : book.title == null;
+    public Integer getPages() {
+        return pages;
     }
 
-    @Override
-    public int hashCode() {
-        return title != null ? title.hashCode() : 0;
+    public void setPages(Integer pages) {
+        this.pages = pages;
     }
 }

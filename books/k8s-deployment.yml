@@ -13,7 +13,18 @@ spec:
         app: books
     spec:
       containers:
-        - name: books
+        - env:
+            - name: APP_BOOK_TITLE
+              valueFrom:
+                configMapKeyRef:
+                  key: app.book-title
+                  name: books-configmap
+            - name: APP_BOOK_PAGES
+              valueFrom:
+                configMapKeyRef:
+                  key: app.book-pages
+                  name: books-configmap
+          name: books
           image: gcr.io/k8s-mn-ci-cd/books:books-0.18
           imagePullPolicy: "Always"
           ports:
