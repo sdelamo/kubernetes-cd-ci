@@ -1,0 +1,13 @@
+= Gateway WebSocket Handshake =
+
+To communicate Puzzle challenges and receive solutions a websocket connection between a webSocket server exposed by the `opes-gateway` microservices and the nodes must be created.
+
+image::websockethandshake.png[]
+
+The initial handshake request must target `/nodes/{nodeName}` where the `nodeName` is one the node ids provided in the <<node-keys-sync, Node Keys Synchronization>> step. For example `/nodes/akorunska115`.
+
+IMPORTANT: The node must provide a JWT prefixed by `Bearer ` in the HTTP Authorization header value.
+
+- The signature of the JWT will be validated with one of the public keys provided in the  <<node-keys-sync, Node Keys Synchronization>> step.
+
+- The expiration claim of the JWT will be validated as well.

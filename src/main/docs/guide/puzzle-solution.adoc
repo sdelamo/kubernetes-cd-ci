@@ -1,0 +1,9 @@
+= Puzzle Solution Score and Report =
+
+image::score-and-report.png[]
+
+<1> Node submits a puzzle solution through the websocket session with the `opes-gateway` service.
+<2> The `opes-gateway` service sends the puzzle solution to the `opes-puzzlescorer` service.
+<3> The `opes-puzzlescorer` service fetches the original puzzle fromt he `opes-puzzlegenerator` serivce and verifies the solution and assigns a score.
+<4> The notifies the `opes-reporter` with result so that the reporter can notify its listeners.
+<5> The reporter notifies its listeners through a websocket session.

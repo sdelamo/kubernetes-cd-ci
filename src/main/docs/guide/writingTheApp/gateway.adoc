@@ -1,0 +1,31 @@
+Create a JAVA app:
+
+`mn create-app example.micronaut.gateway.gateway`
+
+Create a POJO for books:
+
+[source,java]
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/Book.java[]
+----
+
+Create a configuration interface:
+
+[source, java]
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/BookConfiguration.java[]
+----
+
+Create an implementation of the previous interface:
+
+[source, java]
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/BookConfigurationProperties.java[]
+----
+
+Create a Controller:
+
+[source, java]
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/BooksController.java[]
+----

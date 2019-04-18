@@ -1,0 +1,19 @@
+= Continuous Delivery =
+
+WARNING: Google Cloud Project for OPES must exist. Google Cloud Project id is used through several yaml files in this repository. If the Google Project ID changes, those files will need to be updated.
+
+The microservices described in this document will be deployed to https://cloud.google.com/kubernetes-engine/[Google Kubernetes Engine].
+
+:leveloffset: +1
+
+include::cluster.adoc[]
+
+include::servicediscovery.adoc[]
+
+include::configurationmap.adoc[]
+
+include::secret.adoc[]
+
+include::tagging-strategy.adoc[]
+
+:leveloffset: -1

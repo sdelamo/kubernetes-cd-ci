@@ -1,2 +1,3 @@
-include 'gateway'
-include 'books'
+include 'complete'
+include 'complete:books'
+include 'complete:gateway'

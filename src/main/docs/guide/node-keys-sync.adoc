@@ -1,0 +1,26 @@
+= Node Keys synchronization =
+
+Inside the `opes-noderegistry` service there is a Job  ( link:javadoc/opes-noderegistry/com/opes/scoring/node/registry/sync/NodeSyncJob.html[NodeSyncJob] ) which triggers the synchronization of infrastructure nodes public keys.
+
+|===
+| Key | Default value | Description
+| `opes.noderegistry.sync.rate` |  2 minutes | frequency of execution
+| `opes.noderegistry.sync.delay` |  2 minutes | intial delay to be trigger
+|===
+
+WARNING: `NodeSyncJob` is only executed in the Kubernetes (k8s) environment.
+
+To obtain the public keys, `opes-noderegistry` service contacts an API described in https://docs.google.com/document/d/1Az0pz7uGERFx_iKoA61oKsMzh60MTeihICfQzK8lyN4[Communication protocol between Puzzle Service(PS) a.k.a Gateway Microservice (Micronaut) and Node (puzzle solver)] document.
+
+The URL of the remote server can be configured with the parameter `micronaut.http.services.opesnodesserver.url`.
+
+The sync flow is described in the next image:
+
+image::keyssync.png[]
+
+<1> The node registry calls the remote API until no more nodes are sent back. It saves those keys to its internal persistence and exposes them as a JWK Set in an endpoint `/keys`.
+
+<2> The `opes-noderegistry` calls the `opes-gateway` https://docs.micronaut.io/latest/guide/index.html#refreshEndpoint[/refresh] endpoint. This causes the `opes-gateway` to unload his JWT signature configurations.
+
+<3> The next time, the gateway needs to validate a JWT (in the websocket server handshake), he will call the node-registry to obtaint he new keys and create new signature configurations.
+

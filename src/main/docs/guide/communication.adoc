@@ -1,0 +1,18 @@
+= Network communication =
+
+https://docs.google.com/document/d/1Az0pz7uGERFx_iKoA61oKsMzh60MTeihICfQzK8lyN4[Communication between the nodes and the API gateway is described in this document]
+
+
+== Websocket Connection ==
+
+Then connect via websockets to `ws://localhost:8080/nodes/akorunska115`
+
+Once you are connected you will receive, the next message:
+
+`{"msg":"connected"}`.
+
+Please note `akorunska115` is a node name.
+
+Refer to Network communication section below to learn more about the websocket messages. [TODO]
+
+Note, if you did not disabled security you will need to supply a JWT token signed in websocket initial handshake which the gateway microservice can validate. The `gateway` microservice should be able to validate JWT signatures with the public keys exposed to the node registry.

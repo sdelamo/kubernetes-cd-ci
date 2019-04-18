@@ -1,0 +1,7 @@
+Lets describe the microservices you are going to build through the tutorial.
+
+* `books` - It returns a list of books. It uses a domain consisting of a book name and isbn.
+
+* `gateway` - It exposes an endpoint to check whether a book has sufficient stock to fulfill an order. I uses a domain consisting of a stock level and isbn.
+
+include::{commondir}/common-annotationprocessors.adoc[]

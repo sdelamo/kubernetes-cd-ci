@@ -1,0 +1,23 @@
+= Puzzle Microservices =
+
+:sectnums:
+
+:leveloffset: +1
+
+include::flows.adoc[]
+
+include::ci.adoc[]
+
+include::cd.adoc[]
+
+include::javadoc.adoc[]
+
+include::development.adoc[]
+
+include::communication.adoc[]
+
+include::tests.adoc[]
+
+include::dependencies.adoc[]
+
+include::api.adoc[]

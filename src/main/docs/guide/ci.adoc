@@ -1,0 +1,27 @@
+= Continuous Integration =
+
+Tests are run by https://cloud.google.com/cloud-build/[Google Cloud Build].
+
+You will need to enable Google Cloud build in your Google Cloud Project:
+
+image::enable-cloudbuild.jpg[]
+
+Create Cloud Build trigger which runs every tests (module tests, acceptance tests and load tests) for every commit.
+
+image::ci-trigger.png[]
+
+The root of the repository contains a file `cloudbuild.yaml` responsible of running those tests via Gradle tasks.
+
+[source, yaml]
+----
+include::{sourcedir}cloudbuild.yaml[]
+----
+
+== Run Tests Locally ==
+
+To run https://cloud.google.com/cloud-build[Google Cloud Build] locally run:
+
+[source, bash]
+----
+cloud-build-local --config=cloudbuild.yaml --dryrun=false .
+----

@@ -1,0 +1,72 @@
+import com.github.jengelman.gradle.plugins.processes.tasks.JavaFork
+
+plugins {
+    id "org.aim42.htmlSanityCheck" version "1.1.0"
+    id "org.asciidoctor.convert" version "1.5.8.1"
+    id "com.github.johnrengelman.processes" version "0.5.0"
+}
+
+asciidoctorj {
+    version = '1.5.6'
+}
+
+apply from:"https://raw.githubusercontent.com/micronaut-projects/micronaut-guides/master/gradle/guide-build.gradle"
+
+htmlSanityCheck {
+    sourceDir = new File("${project.buildDir}/docs")
+}
+publishGuide.finalizedBy(htmlSanityCheck)
+
+subprojects { subProject ->
+
+    final Map<String, Integer> micronautApps = [books: 8081,
+                                        gateway: 8080]
+    if (micronautApps.keySet().any { n -> subProject.name.endsWith(n)}) {
+
+        afterEvaluate {
+
+            String applicationClass = "example.micronaut.${micronautApps.keySet().find { n -> subProject.name.endsWith(n)}}.Application"
+            task startApp(type: JavaFork) {
+                classpath = sourceSets.main.runtimeClasspath
+                main = applicationClass
+                systemProperty "micronaut.environments", 'acceptance'
+            }
+            startApp.dependsOn assemble
+            task waitUntilAppIsUp(type: example.micronaut.WaitUntilHealthIsUp) {
+                url = "http://localhost:${micronautApps[micronautApps.keySet().find { n -> subProject.name.endsWith(n)}]}"
+            }
+            waitUntilAppIsUp.mustRunAfter 'startApp'
+
+            task stopApp {
+                doLast {
+                    startApp.processHandle.abort()
+                }
+            }
+        }
+    }
+}
+
+task startMicroservices {
+    dependsOn ':complete:books:waitUntilAppIsUp'
+    dependsOn ':complete:books::startApp'
+    dependsOn ':complete:gateway:waitUntilAppIsUp'
+    dependsOn ':complete:gateway::startApp'
+}
+
+task stopMicroservices {
+    dependsOn ':complete:books:stopApp'
+    dependsOn ':complete:gateway:stopApp'
+}
+
+task runAcceptanceTest {
+    dependsOn ':complete:acceptancetest:cleanTest'
+    dependsOn ':complete:acceptancetest:test'
+    runAcceptanceTest.mustRunAfter 'startMicroservices'
+}
+
+task acceptanceTest {
+    group 'verification'
+    dependsOn 'startMicroservices'
+    dependsOn 'runAcceptanceTest'
+    finalizedBy 'stopMicroservices'
+}

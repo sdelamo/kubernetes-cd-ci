@@ -1,0 +1,25 @@
+= Dispatch =
+
+Inside the `opes-dispatch` service there is a Job  ( link:javadoc/opes-dispatch/com/opes/scoring/dispatch/PuzzleSchedulerJob.html[PuzzleSchedulerJob] ) which triggers the generation of puzzles for nodes which are currently not busy and dispatches those puzzles through the websocket connection the `opes-gateway` service.
+
+|===
+| Key | Default value | Description
+| `opes.puzzle.scheduler.rate` |  2 minutes | frequency of execution
+| `opes.puzzle.scheduler.delay` |  2 minutes | intial delay to be trigger
+|===
+
+WARNING: `PuzzleSchedulerJob` is only executed in the Kubernetes (k8s) environment.
+
+The next diagram illustrates the dispatch flow:
+
+image::dispatch.png[]
+
+NOTE: Communication between microservices is secured. Requests include a JWT prefixed by *Bearer _* as the value of the HTTP Authorization header. The dispatcher generates the JWT and signs it using a Secret Signature configuration. The secret, configurable through secret `opes.jwt.secret` - see <<secret, Kubernetes Secret>> section, is shared between the different microservices.
+
+<1> The `opes-dispatcher` fetches the nodes ids in the `opes-registry` persistence.
+<2> The `opes-dispatcher` asks the `puzzle-scorer` to get a list of busy nodes. The dispatcher will not send puzzles to busy nodes.
+<3> The `opes-dispatcher` asks the `opes-puzzlegenerator` service to generate a Puzzle for every available node.
+<4> Sends the puzzle to the `opes-gateway` service.
+<5> The `opes-gateway` service dispatches the puzzle through the websocket session to the node.
+<6> The `opes-gateway` notifies the `puzzle-scorer` service so that he can keep track of on-going puzzle-challenges.
+

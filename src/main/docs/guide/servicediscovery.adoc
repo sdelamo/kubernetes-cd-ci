@@ -1,0 +1,20 @@
+= Service Discovery =
+
+> Service Discovery enables the ability for Microservices to find each other without necessarily knowing the physical location or IP address of associated services.
+
+The project uses the https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/index.html[Micronaut's Service Discovery module] which allows Micronaut HTTP clients to discover Kubernetes services.
+
+== Cluster Role Binding ==
+
+Connect to Kubernetes Cluster:
+
+image::connect-to-cluster.png[]
+
+and run:
+
+[source, bash]
+----
+kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
+----
+
+Right now, the previous statement is necessary to use service discovery integration provided by https://micronaut-projects.github.io/micronaut-kubernetes/snapshot/guide/index.html[Kubernetes and Micronaut integration].

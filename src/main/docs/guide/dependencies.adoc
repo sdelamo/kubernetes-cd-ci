@@ -1,0 +1,17 @@
+= Dependencies =
+
+== BUILD Dependencies ==
+
+- https://plugins.gradle.org/plugin/com.google.cloud.tools.jib[Jib Gradle Plugin]. Gradle plugin to build container images for Java applications.
+- Gatling Plugin for Gradle https://github.com/lkishalmi/gradle-gatling-plugin[Github] https://plugins.gradle.org/plugin/com.github.lkishalmi.gatling[Gradle Plugin Portal]
+- Gradle Process Plugin https://github.com/johnrengelman/gradle-processes[Github] https://plugins.gradle.org/plugin/com.github.johnrengelman.processes[Gradle Portal]
+- https://plugins.gradle.org/plugin/io.spring.dependency-management[io.spring.dependency-management]. Gradle plugin that provides Maven-like dependency management functionality
+- https://plugins.gradle.org/plugin/net.ltgt.apt-eclipse[net.ltgt.apt-eclipse]. Gradle plugin making it easier/safer to use Java annotation processors
+- https://plugins.gradle.org/plugin/net.ltgt.apt-idea[net.ltgt.apt-idea]. Gradle plugin making it easier/safer to use Java annotation processors
+- https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow[shadow]. A Gradle plugin for collapsing all dependencies and project code into a single Jar file.
+- https://docs.gradle.org/current/userguide/application_plugin.html[Application] Gradle plugin. Facilitates creating an executable JVM application.
+- https://docs.gradle.org/4.10/userguide/groovy_plugin.html[Gradle Groovy plugin]. The Groovy plugin extends the Java plugin to add support for Groovy projects.
+
+=== Test Dependencies ===
+
+- https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html[Micronaut Test]

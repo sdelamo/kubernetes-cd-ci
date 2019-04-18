@@ -1,0 +1,66 @@
+= Configuration Map =
+
+There is a https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/[Configuration Map] per application.
+
+E.g. the following snippets displays the content of the `opes-noderegistry-configmap`.
+
+[source,yaml]
+----
+include::{sourcedir}/opes-noderegistry/opes-noderegistry-configmap.yml[]
+----
+
+Create the configuration maps which will be used in the deployment files later described in this document.
+
+**opes-dispatch-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-dispatch/opes-dispatch-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-dispatch-configmap`.
+
+**opes-gateway-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-gateway/opes-gateway-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-gateway-configmap`.
+
+**opes-noderegistry-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-noderegistry/opes-noderegistry-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-noderegistry-configmap`.
+
+**opes-puzzlescorer-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-puzzlescorer/opes-puzzlescorer-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-puzzlescorer-configmap`.
+
+**opes-reporter-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-reporter/opes-reporter-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-reporter-configmap`.
+
+**opes-puzzlegenerator-configmap**
+
+[source,bash]
+----
+kubectl apply -f opes-puzzlegenerator/opes-puzzlegenerator-configmap.yaml
+----
+
+The previous statement creates a configuration map named `opes-puzzlegenerator-configmap`.

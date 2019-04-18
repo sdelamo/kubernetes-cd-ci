@@ -1,0 +1,54 @@
+= Tagging Strategy =
+
+To deploy a new version of a microservice you will need to bump up the version number and push a GIT tag with the following structure `{servicename}-{versionnumber}`.
+
+*Bump up the version number*
+
+For example, to deploy version 0.12 of the `opes-gateway` service, you will need to edit `opes-gateway/gradle.properties` and set
+the `projectVersion` property to 0.12 and also edit `opes-gateway/opes-dispatch-deployment.yml` and set `opes-gateway-0.12` as the tag name.
+
+[source, yaml]
+----
+..
+.
+         image: gcr.io/opes-one/opes-gateway:opes-gateway-0.12
+..
+.
+----
+
+For version 0.12 of `opes-gateway` the GIT tag will be `opes-gateway-0.12` Such tag triggers the deployment of the version 0.12 of `opes-gateway` microservice.
+
+You need to create a https://cloud.google.com/cloud-build/[Cloud Build Tag] trigger per microservice.
+
+Next image illustrates an example trigger for the `opes-gateway` microservice:
+
+image::tag-trigger.png[]
+
+NOTE: regular expression opes-gateway.* matches the a tag such as `opes-gateway-0.12`
+
+WARNING: previous image uses https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values[Cloud Build Substitutions] to expose the cluster name and region. Those need to match the actual values in the OPES project.
+
+The previous GIT TAG trigger runs a Cloud build configuration file. In the case of the `opes-gateway` service such file looks like:
+
+[source, yaml]
+----
+include::{sourcedir}opes-gateway/cloudbuild-deploy.yaml[]
+----
+
+The previous Cloud build configuration file:
+
+- Run Gradle Task `build` which runs the tests.
+- Builds a container image using https://github.com/GoogleContainerTools/jib[Jib]. Jib enables to build your image directly to a Docker daemon. It uses the docker command line tool and requires that you have docker available on your PATH.
+- Pushes the image to the https://cloud.google.com/container-registry/[Google Container Registry] tagging it with the version name.
+- Deploy to Kubectl to GKE.
+
+The last step uses a deployment file.
+
+The `opes-gateway` deployment file is illustrated in the following snippet:
+
+[source, yaml]
+----
+include::{sourcedir}opes-gateway/opes-gateway-deployment.yml[]
+----
+
+Please, note that the previous deployment descriptor uses the Config Map `opes-gateway-configmap` created before.

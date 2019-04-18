@@ -1,0 +1,29 @@
+= Kubernetes Cluster =
+
+Create Kubernetes Cluster
+
+image::kubernetes-cluster.png[]
+
+Make sure to enable Stackdriver logging:
+
+image::kubernetes-cluster-edit.png[]
+
+== Deploying to GKE from Cloud Build ==
+
+See https://cloud.google.com/cloud-build/docs/configuring-builds/build-test-deploy-artifacts#deploying_artifacts[Deploying Artifacts] section in Cloud Build documentation.
+
+To deploy to GKE with kubectl:
+
+- Enable the GKE API.
+- Add GKE IAM role:
+* In GCP Console, visit the IAM menu.
+* From the list of service accounts, click the Roles drop-down menu beside the Cloud Build [YOUR-PROJECT-NUMBER]@cloudbuild.gserviceaccount.com service account.
+* Click **Kubernetes Engine**, then click **Kubernetes Engine Admin**.
+* Click **Save**.
+
+image::google-cloud-user-kubernetes.png[]
+
+=== Readiness and Liveness Probes ==
+
+Each app exposes `/health` and `/ready` endpoints which are used for
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/[Liveness and Readiness probes] in Kubernetes.

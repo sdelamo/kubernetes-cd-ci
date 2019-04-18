@@ -1,0 +1,15 @@
+= Tests =
+
+== Functional Tests ==
+
+Run `./gradlew test -parallel` to run individual tests for every microservices project.
+
+== Acceptance Tests ==
+
+`./gradlew acceptanceTest` runs several tests which verifies services collaborating with each other.
+
+== Load Tests ==
+
+runs load Tests with
+
+`./gradlew loadTest`

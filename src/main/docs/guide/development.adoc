@@ -1,0 +1,41 @@
+= Development =
+
+- Microservices are developed with [Micronaut](https://micronaut.io).
+
+- Production code is written with Java.
+
+- Tests are written in Apache Groovy with [Spock](http://spockframework.org).
+
+- [Gradle](https://gradle.org/) is used as a Build tool.
+
+== Start Microservices ==
+
+Start all the microservices in parallel.
+
+`./gradlew  -Dmicronaut.environments=acceptance run -parallel`
+
+To start all the microservices in parallel without security:
+
+`./gradlew  -Dmicronaut.environments=acceptance,micronaut.security.enabled=false run -parallel`
+
+Please, see `API Documentation` for more information about endpoints being exposed.
+
+== Start Microservices on isolation (Local) ==
+
+**gateway**
+`./gradlew opes-gateway:run`
+
+**noderegistry**
+`./gradlew opes-noderegistry:run`
+
+**puzzle-generator**
+`./gradlew opes-puzzlegenerator:run`
+
+**dispatch**
+`./gradlew dispatch:run`
+
+**puzzlescorer**
+`./gradlew opes-puzzlescorer:run`
+
+**reporter**
+`./gradlew opes-reporter:run`

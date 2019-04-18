@@ -1,0 +1,52 @@
+= API Documentation =
+
+OPES leverages Micronaut's https://docs.micronaut.io/1.1.0.M1/guide/index.html#openapi[OpenAPI/Swagger] support to generate OpenAPI at compilation.
+
+If you build the microservices:
+
+`./gradlew build`
+
+OpenAPI files are generated:
+
+**opes-gateway** link:openapi/opes-gateway-0.1.yml[yaml] link:swagger-ui/opes-gateway/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-gateway/build/classes/java/main/META-INF/swagger/opes-gateway-0.1.yml[]
+//----
+
+**opes-noderegistry** link:openapi/opes-noderegistry-0.1.yml[yaml] link:swagger-ui/opes-noderegistry/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-noderegistry/build/classes/java/main/META-INF/swagger/opes-noderegistry-0.1.yml[]
+//----
+
+**opes-dispatch** link:openapi/opes-dispatch-0.1.yml[yaml] link:swagger-ui/opes-dispatch/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-dispatch/build/classes/java/main/META-INF/swagger/opes-dispatch-0.1.yml[]
+//----
+
+**opes-reporter** link:openapi/opes-reporter-0.1.yml[yaml] link:swagger-ui/opes-reporter/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-reporter/build/classes/java/main/META-INF/swagger/opes-reporter-0.1.yml[]
+//----
+
+**opes-puzzlegenerator** link:openapi/opes-puzzlegenerator-0.1.yml[yaml] link:swagger-ui/opes-puzzlegenerator/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-puzzlegenerator/build/classes/java/main/META-INF/swagger/opes-puzzlegenerator-0.1.yml[]
+//----
+
+**opes-puzzlescorer** link:openapi/opes-puzzlescorer-0.1.yml[yaml] link:swagger-ui/opes-puzzlescorer/index.html[swagger-ui]
+
+//[source,yaml]
+//----
+//include::{sourcedir}/opes-puzzlescorer/build/classes/java/main/META-INF/swagger/opes-puzzlescorer-0.1.yml[]
+//----
+
